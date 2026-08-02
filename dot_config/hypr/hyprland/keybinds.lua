@@ -121,6 +121,8 @@ create_bind("SUPER + SHIFT + l", hl.dsp.window.move({ direction = "right" }))
 create_bind("SUPER + SHIFT + j", hl.dsp.window.move({ direction = "down" }))
 create_bind("SUPER + SHIFT + h", hl.dsp.window.move({ direction = "left" }))
 
+create_bind(vars.kbWindowResizeCol, hl.dsp.layout("colresize +conf") )
+
 create_bind(vars.kbWindowDecreaseWidth, fn.resize_active_window(-10, 0), repeating)
 create_bind(vars.kbWindowIncreaseWidth, fn.resize_active_window(10, 0), repeating)
 create_bind(vars.kbWindowDecreaseHeight, fn.resize_active_window(0, -10), repeating)

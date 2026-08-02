@@ -104,12 +104,15 @@ return {
     kbToggleWindowFloating     = "SUPER + ALT + Space",
     kbCloseWindow              = "SUPER + Q",
 
+    -- Window Scrolling Actions
+    kbWindowResizeCol          = "SUPER + R",
+
     -- Special workspaces toggles
     kbSpecialWs                = "SUPER + S",
     kbSystemMonitorWs          = "CTRL + SHIFT + Escape",
     kbMusicWs                  = "SUPER + M",
     kbCommunicationWs          = "SUPER + D",
-    kbTodoWs                   = "SUPER + R",
+    -- kbTodoWs                   = "SUPER + R",
 
     -- Apps
     kbTerminal                 = "SUPER + T",
