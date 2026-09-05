@@ -280,7 +280,7 @@
             "workspaces": true
         },
         "showOnHover": true,
-        "status": {
+        "statusIcons": {
             "showAudio": true,
             "showBattery": false,
             "showBluetooth": false,
@@ -396,7 +396,7 @@
             "lockBeforeSleep": false,
             "timeouts": [
                 {
-                    "idleAction": "lock",
+                    "idleAction": "",
                     "inhibitWhenAudio": false,
                     "inhibitWhenCharging": false,
                     "respectInhibitors": true,
@@ -603,7 +603,7 @@
     "notifs": {
         "actionOnClick": false,
         "clearThreshold": 0.3,
-        "defaultExpireTimeout": 5000,
+        "defaultExpireTimeout": 3000,
         "expandThreshold": 20,
         "expire": true,
         "fullscreen": "on",
@@ -710,7 +710,7 @@
             "audioInputChanged": true,
             "audioOutputChanged": true,
             "capsLockChanged": true,
-            "chargingChanged": true,
+            "chargingChanged": false,
             "configLoaded": true,
             "dndChanged": true,
             "fullscreen": "off",
@@ -719,7 +719,7 @@
             "kbLimit": true,
             "nowPlaying": false,
             "numLockChanged": true,
-            "vpnChanged": true
+            "vpnChanged": false
         },
         "vpn": {
             "enabled": false,

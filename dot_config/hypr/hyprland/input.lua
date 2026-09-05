@@ -22,5 +22,15 @@ hl.config({
 
     cursor = {
         hotspot_padding = 1,
+        --
+        -- added to fix crash
+        no_hardware_cursors = 1,
     },
+
+    -- added to fix crash
+    render = {
+        direct_scanout = 0,
+        cm_enabled = true,
+        new_render_scheduling = false,
+    }
 })

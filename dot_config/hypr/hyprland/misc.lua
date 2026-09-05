@@ -18,9 +18,11 @@ hl.config({
         key_press_enables_dpms       = true,
 
         background_color             = "rgb(" .. scheme.surfaceContainer .. ")",
+
+        vrr = 0,
     },
 
     debug = {
         error_position = 1
-    }
+    },
 })
