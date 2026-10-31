@@ -11,7 +11,7 @@ return {
     editor                     = "foot -e nvim",
     fileExplorer               = "foot -e yazi",
     audioSettings              = "pavucontrol",
-    steam                      = "exec app2unit -- steam",
+    steam                      = "steam",
 
     -- Touchpad
     touchpadDisableTyping      = true,
