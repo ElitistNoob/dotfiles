@@ -66,6 +66,9 @@ return {
     kbMoveWinToWs              = "SUPER + ALT",
     kbMoveWinToWsGroup         = "CTRL + SUPER + ALT",
 
+    -- Window Scrolling Actions
+    kbWindowResizeCol          = "SUPER + R",
+
     -- All the following binds can be either an array of binds to bind multiple keys, or a single string.
 
     -- Workspaces
@@ -104,15 +107,12 @@ return {
     kbToggleWindowFloating     = "SUPER + ALT + Space",
     kbCloseWindow              = "SUPER + Q",
 
-    -- Window Scrolling Actions
-    kbWindowResizeCol          = "SUPER + R",
-
     -- Special workspaces toggles
     kbSpecialWs                = "SUPER + S",
     kbSystemMonitorWs          = "CTRL + SHIFT + Escape",
     kbMusicWs                  = "SUPER + M",
     kbCommunicationWs          = "SUPER + D",
-    -- kbTodoWs                   = "SUPER + R",
+    kbTodoWs                   = "SUPER + ALT + R",
 
     -- Apps
     kbTerminal                 = "SUPER + T",
@@ -144,9 +144,9 @@ return {
     kbShowSidebar              = "SUPER + N",
     kbClearNotifs              = "CTRL + ALT + C",
     kbShowPanels               = "SUPER + K",
-    kbLock                     = "CTRL + ALT  + L",
-    kbRestoreLock              = "SUPER + ALT + L",
-    kbSleep                    = "CTRL + SHIFT + S",
+    kbLock                     = "CTRL + ALT + Semicolon",
+    kbRestoreLock              = "SUPER + ALT + Semicolon",
+    kbSleep                    = "SUPER + SHIFT + S",
 
     -- Clipboard and emoji picker
     kbClipboard                = "SUPER + V",

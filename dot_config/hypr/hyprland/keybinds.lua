@@ -13,6 +13,10 @@ local function normalise_keybind(key)
     return key:gsub("%s+", ""):lower()
 end
 
+local function valid_keybind(key)
+    return type(key) == "string" and key:match("%S") ~= nil
+end
+
 local function repeating_unless_mouse(key)
     return not normalise_keybind(key):find("mouse", 1, true) and repeating or nil
 end
@@ -21,10 +25,10 @@ local function flatten_keybinds(keybinds, keys)
     keys = keys or {}
 
     if type(keybinds) == "table" then
-        for _, keybind in ipairs(keybinds) do
+        for _, keybind in pairs(keybinds) do
             flatten_keybinds(keybind, keys)
         end
-    elseif keybinds ~= nil then
+    elseif valid_keybind(keybinds) then
         keys[#keys + 1] = keybinds
     end
 
@@ -39,6 +43,10 @@ local function create_bind(keybinds, action, flags)
     for _, key in ipairs(flatten_keybinds(keybinds)) do
         hl.bind(key, action, get_flags(key))
     end
+end
+
+local function extend_keybind(base, suffix)
+    return valid_keybind(base) and base .. " + " .. suffix or nil
 end
 
 -- Launcher
@@ -74,10 +82,10 @@ create_bind(
 
 for i = 1, 10 do
     local key = i % 10 -- 10 maps to key 0
-    create_bind(vars.kbGoToWs .. " + " .. key, fn.wsaction("focus", "", i))
-    create_bind(vars.kbMoveWinToWs .. " + " .. key, fn.wsaction("move", "", i))
-    create_bind(vars.kbGoToWsGroup .. " + " .. key, fn.wsaction("focus", "group", i))
-    create_bind(vars.kbMoveWinToWsGroup .. " + " .. key, fn.wsaction("move", "group", i))
+    create_bind(extend_keybind(vars.kbGoToWs, key), fn.wsaction("focus", "", i))
+    create_bind(extend_keybind(vars.kbMoveWinToWs, key), fn.wsaction("move", "", i))
+    create_bind(extend_keybind(vars.kbGoToWsGroup, key), fn.wsaction("focus", "group", i))
+    create_bind(extend_keybind(vars.kbMoveWinToWsGroup, key), fn.wsaction("move", "group", i))
 end
 
 -- Go to workspace -1/+1
@@ -106,22 +114,23 @@ create_bind(vars.kbUngroup, hl.dsp.window.move({ out_of_group = true }))
 create_bind(vars.kbGroupLockActive, hl.dsp.group.lock_active())
 
 -- Window actions
--- for _, dir in ipairs({ "left", "right", "up", "down" }) do
---     create_bind("SUPER + " .. dir, hl.dsp.focus({ direction = dir }))
---     create_bind("SUPER + SHIFT + " .. dir, hl.dsp.window.move({ direction = dir }))
--- end
+for _, dir in ipairs({ "left", "right", "up", "down" }) do
+    create_bind("SUPER + " .. dir, hl.dsp.focus({ direction = dir }))
+    create_bind("SUPER + SHIFT + " .. dir, hl.dsp.window.move({ direction = dir }))
+end
 
-create_bind("SUPER + k", hl.dsp.focus({ direction = "up" }))
-create_bind("SUPER + l", hl.dsp.focus({ direction = "right" }))
-create_bind("SUPER + j", hl.dsp.focus({ direction = "down" }))
-create_bind("SUPER + h", hl.dsp.focus({ direction = "left" }))
-
-create_bind("SUPER + SHIFT + k", hl.dsp.window.move({ direction = "up" }))
-create_bind("SUPER + SHIFT + l", hl.dsp.window.move({ direction = "right" }))
-create_bind("SUPER + SHIFT + j", hl.dsp.window.move({ direction = "down" }))
-create_bind("SUPER + SHIFT + h", hl.dsp.window.move({ direction = "left" }))
-
-create_bind(vars.kbWindowResizeCol, hl.dsp.layout("colresize +conf") )
+-- create_bind("SUPER + k", hl.dsp.focus({ direction = "up" }))
+-- create_bind("SUPER + l", hl.dsp.focus({ direction = "right" }))
+-- create_bind("SUPER + j", hl.dsp.focus({ direction = "down" }))
+-- create_bind("SUPER + h", hl.dsp.focus({ direction = "left" }))
+--
+-- create_bind("SUPER + SHIFT + k", hl.dsp.window.move({ direction = "up" }))
+-- create_bind("SUPER + SHIFT + l", hl.dsp.window.move({ direction = "right" }))
+-- create_bind("SUPER + SHIFT + j", hl.dsp.window.move({ direction = "down" }))
+-- create_bind("SUPER + SHIFT + h", hl.dsp.window.move({ direction = "left" }))
+--
+-- create_bind(vars.kbWindowResizeCol, hl.dsp.layout("colresize +conf") )
+--
 
 create_bind(vars.kbWindowDecreaseWidth, fn.resize_active_window(-10, 0), repeating)
 create_bind(vars.kbWindowIncreaseWidth, fn.resize_active_window(10, 0), repeating)
